@@ -1,0 +1,748 @@
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
+    
+    <script src="https://exersearch.com/jquery-editable-select.js"></script>
+    </head>
+    <body>
+        
+        <div class="mid">
+            <div class="nav">
+                <ul id="navul" style="height:15vh;">
+                    <li class = 'webtitle'><img style= "height:7.5vh;width:33%;left:33%;position:absolute" src="https://haddonfieldnutrition.com/logoTitle.png"/></li>
+                  
+                </ul>
+            </div>  
+        </div>
+        <div class="e">
+            <div class="bottom-row">
+                
+                <div id="ee">
+                    <div class="inner" style="height:100vh;">
+                        
+                        <div class="topin">
+                            <div class="topinleft">
+                                <div class = "intro">
+                            <h2>Haddonfield Nutrition</h2>
+                            <p style="font-family:sans-serif;"> This website will help you plan your nutrition! We have a selection of items from Haddonfield Memorial High School's lunch menu, along with a place to input your own food. Input your foods and click "Get Data" to begin!</p>
+                        </div>
+                                <span class ="betwen">Insert own food:</span>
+                                <br>
+                                    <input type="text" id='foodinp' placeholder="Insert food name here (be specific)"><button id="inp" class="datGet" style="margin-left:1em">Get Data</button>
+                                <br>
+                                <br>
+                                <span class ="betwen" >Choose from items on school's menu:</span>
+                                <br>
+                                <select id ="haddinp">
+                                </select><button id="sel" class="datGet" style="margin-left:1em">Get Data</button>
+                            </div>
+                            <div class="topinright">
+                                <table>
+                                
+                            </table>
+                            </div>
+                        </div>
+                        <div class="nut">
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="footpad"></div>
+            
+        </div>
+        <div class="footer" style="position:relative"><span class="botText" style="padding-top:1em;">Created by the HMHS Computer Science Club || Uses Nutritionix API</span>
+        <span class="botText" style="">email juliancgeorge@gmail.com w/ questions or concerns</span></div>
+    
+    <style>
+        @media screen and (max-width: 1200px){
+            .topinright {
+                width:100%   
+            }
+            .topinleft {
+                width:100%;
+                position:relative;
+            }
+            .footer >* {
+                font-size:1.2vw;
+            }
+            .botText{
+                left:10%;
+                width:80%;
+            }
+            #foodinp, #haddinp {
+                width: 35vw;
+            }
+            #betwen {
+                font-size:3vw;
+            }
+            .topinleft > p {
+                 font-size:2vw;
+            }
+            
+        }
+        @media screen and (min-width: 1200px) {
+            .topin >div {
+                position:relative;
+                width:50%;
+            }
+            .topin {
+                display:flex;
+            }
+            .footer > *{
+            font-size:.6vw;
+        }
+            .botText {
+                
+                left:35%;
+                width:30%;
+            }
+            #foodinp, #haddinp {
+                width: 15vw;
+            }
+            #betwen,.topinleft > p  {
+                font-size:1vw;
+            }
+            
+        }
+        #foodinp {
+            
+            height:2.5em;
+            padding:.1rem .25rem .1rem .25rem;
+            border-radius:2.5px;
+            border:0;
+        }
+        .botText{
+            
+            position:absolute;
+            text-align:center;
+            top:2.25em
+        }
+        .nutHead >button {
+            font-size: .5vw;
+            width:5vw;
+            margin-left:3vw;
+        }
+        
+        .nav {
+            -webkit-box-shadow: 0px 0px 0px 0px rgba(65,65,65,0.75);
+            
+        }
+        #navul {
+            list-style-type:none; 
+            left: 35%; 
+            width:30%;
+            margin-left:auto;
+            margin-right:auto;
+            top:5vh;
+            
+        }
+        .footpad {
+            background-color:#cdcdcd;
+            height:15vh;
+        }
+        .footer {
+            width:100%;
+            height:5vh;
+            background-color:#991616;
+            -webkit-box-shadow: -5px  -5px 5px 5px rgba(65,65,65,0.75);
+            clear:both;
+        
+        }
+        .webtitle {
+            text-align:center;
+            font-size:24px;
+            font-family:Arial;
+            text-shadow:3px 3px 6px #560808;
+            
+        }
+        input.es-input { 
+            padding-right: 20px !important; 
+            background: white url(https://exersearch.com/eeff.png) right center no-repeat; 
+            border-radius:2.5px;
+            border:0;
+        height:2.5em;
+        width:15vw;}
+        input.es-input.open {
+	-webkit-border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; border-bottom-left-radius: 0;
+	-webkit-border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0; border-bottom-right-radius: 0; }
+        .es-list { position: absolute; 
+            padding: 0; 
+            margin: 0; 
+            border-top: 1px solid #d1d1d1; 
+            display: none; 
+            z-index: 1000; 
+            background: #fff; 
+            max-height: 160px; 
+            overflow-y: auto;
+            font-family:sans-serif;
+	-moz-box-shadow: 0 2px 3px #ccc; -webkit-box-shadow: 0 2px 3px #ccc; box-shadow: 0 2px 3px #ccc; }
+        .es-list li { display: block; padding: 5px 10px; margin: 0; }
+        .es-list li.selected { background: #f3f3f3; }
+        .es-list li[disabled] { opacity: .5; }
+        select {
+            height:2em;
+            width: 15vw
+        }
+        
+        .topinleft {
+            padding-top: .6vh;
+        }
+        
+        .nutHead {
+            height:4em;
+            position:relative;
+        }
+        .nutHead > button {
+            
+            display:inline-block;
+            height:40%;
+            bottom:30%;
+            
+            position:absolute;
+            height:2em;
+        }
+        .mealabutt {
+            right:0px;
+            width:5vw;
+            background: #00a500;
+            color: white;
+        }
+        .mealabutt:hover{
+            background-color:#008700
+        }
+        .nutHead > h2 {
+            width:30vw;
+            display:inline-block;
+            height:4em;
+        }
+        span {
+            font-size:24px;
+            font-family:sans-serif;
+        }
+        button{
+            height:2.5em;
+            
+            border-radius:5px;
+            border: 1px solid grey;
+            cursor:pointer;
+            font-family:arial;
+            background-color:#CCCCCC
+        }
+        button:hover {
+            background-color:#B2B2B2;
+        }
+        .inner {
+            background-color:#FFD1D1;
+            border-radius:5px;
+            
+            padding:2.5vh 5vw 5vh 5vw;
+            margin:2.5vh 1vw 2.5vh 1vw;
+            box-shadow: .25rem .25rem #A53A3A;
+            /*display:flex;*/
+        }
+        .e {
+            background-color:#555555;
+            flex:1;
+            flex-grow:1;
+            height:auto;
+            
+        }
+        .mid {
+            background: white
+        }
+        
+        #navul >li{
+            padding-top:.25vw;
+        }
+        .nav > h1 {     
+            position:absolute;
+            width:10%;
+            height:5vh; 
+        }
+        #excellence {  
+            position:absolute;
+            width:10% 
+        }
+        html {
+            width:100%;
+        }
+        #ee {
+            
+            width:80vw;
+            border-radius:1rem;
+            background-color:#BF4242;
+            
+            display:table;
+            left:10vw;
+            position:relative;
+            -moz-box-shadow:4px 4px 5px 4px rgba(100,100,100,0.75);
+            box-shadow: 4px 4px 5px 0px rgba(80,80,80,0.75);
+            
+        }
+        #side{
+            width:10vw;
+            height:100%
+        }
+        .bottom-row{
+            width:100%;
+            flex-direction:row;
+            display:inline-flex;
+            background-color:#cdcdcd;
+            font-family:Arial;
+        }
+        .mid {
+            height:25vh;
+            width:100%;
+            background: rgb(239,239,239);
+background: linear-gradient(180deg, rgba(239,239,239,1) 65%, rgba(205,205,205,1) 100%);
+        }
+        body {
+            margin:0;
+            width:100%;
+        }
+        .nav{
+            display:flex;
+            flex-direction:column;
+            width:100%;
+            background-color:rgba(239,239,239,1);
+            height:15vh;
+            /**-moz-box-shadow:4px 4px 5px 4px rgba(80,80,80,0.75);
+            box-shadow: 4px 4px 5px 0px rgba(80,80,80,0.75);*/
+            
+        }
+        hr {
+             border: 0;
+            height: 1px;
+            background: #333;
+        
+        }
+        h2{
+            font-family:sans-serif;
+        }
+        h1 {
+            font-family:sans-serif;
+            text-align:center;
+        }
+        td {
+            cursor:pointer;
+            text-align:right;
+            height:2em;
+        }
+        .topinright > * {
+            float:right;
+            right:0px;
+        }
+        table {
+            position:relative;
+        }
+        #tabt {
+            text-align:right;
+            width:100%;
+            flex:1;
+            border-bottom: 1px solid black;
+        }
+        .closer {
+            border:0;
+            background:none;
+            padding:0;
+            margin:0;
+            color:dimgrey;
+            height:1.5em;
+        }
+        .closer:hover {
+            background:none;
+            color: black;
+        }
+        .mealitem {
+            font-size:14px;
+        }
+        .mealR {
+            right: 5.5vw;
+            width:5vw;
+            background-color:#a50000;
+            color:white;
+        }
+        .mealR:hover{
+            background-color:#870000
+        }
+        .midconf{
+            position:relative;
+            height:5vh;
+            flex:auto;
+            padding-top:2.5vh;
+            padding-bottom:1vh;
+        }
+        .midconf > button{
+            position:absolute;
+            right:0px;
+            
+        }
+        .totalNut >h3 {
+            font-size:24px;
+            text-align:center;
+            margin:0;
+            font-family:sans-serif;
+            font-weight:normal;
+        }
+        .totalNut >h4 {
+            font-size:16px;
+            text-align:center;
+            margin:0;
+            font-family:sans-serif;
+            font-weight:normal;
+        }
+        .es-input {
+            background-color: white;
+            padding:.1rem .25rem .1rem .25rem;
+        }
+        select {
+            border: 0;
+            border-radius:2.5px;
+            cursor:pointer;
+            -moz-appearance:none;
+            appearance:none;
+            background:url(https://exersearch.com/dropdown.png) no-repeat right white;
+            background-size: 1vw 2vh;
+            height:2.5em;
+        }
+        h4 {
+            margin:0
+                
+        }
+        .totalB {
+            background-color:#3232ff;
+            color:white;
+            margin:0;
+            width:10.5vw;
+            margin-top:4vh;
+            font-size:.6vw;
+        }
+        .totalB:hover {
+            background-color:#1919ff
+        }
+        .footer > span {
+
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+
+}
+    </style>
+<script>
+    var go=0
+    var haddloaded=0;
+    var haddfoods;
+    var recValues= [
+        65,20,300,2400,300,25,31,50
+    ]
+    $('#sel').click(function(){
+        if ($('#haddinp').val()==null) {
+            alert("You haven't entered anything to search!")
+        }
+        else {
+            var k = JSON.stringify(haddfoods[$('.es-visible').val()])
+            populate(JSON.parse(k))
+        }
+        
+    })
+    $('#haddinp').click(function(){
+        if (haddloaded==0){
+                $.get("https://haddonfieldnutrition.com:3002",{type:'haddon-list'},function(data){
+                    
+                    for (var i = 0;i<data.length;i++){
+                        $('#haddinp').append("<option value ='"+i+"'>"+data[i].Food_name+"</option>")
+                    }
+                    haddfoods=data;
+                    $('#haddinp').editableSelect()
+                    $('#haddinp').editableSelect('show')
+                    haddloaded=1;
+                    go=1
+                }).fail(function(){
+            alert("Server error; Food not retrieved")
+                    go=0
+        })
+        }
+        else if (haddloaded==1) {
+            $('#haddinp').editableSelect('hide')
+        }
+
+            
+        })
+    function nullZ (inp){
+        if (inp == null){
+            return 0
+        }
+        else {
+            return inp
+        }
+    }
+    var foodinfo;
+    var meal=[];
+    $('button').click(function(){
+        if (go==1) {
+            $('.inner').css({'height':''})
+            
+        }
+        $('.intro').remove()
+    })
+    function totalPopulate(obj){
+        obj = JSON.stringify(obj)
+        obj = JSON.parse(obj)
+        
+        if (meal.length === 0 ) {
+            alert("There is no food in your meal!")
+        }
+        else {
+          $('.totalNut').remove();
+        $('.topin').before("<div class='totalNut'><h1>Final Meal Nutrition</h1></div>")
+        var obarr=Object.keys(obj);
+        var j = 0;
+            console.log(obj)
+        for (var i = 0;i<obarr.length;i++){
+                        if (obarr[i]=="Calories") {
+                            //obj[obarr[i]]+=" cal."
+                            $('.totalNut').append("<h3>"+obarr[i].replace("_"," ")+": "+obj[obarr[i]]+" cal.</h3><br>")
+                        }
+                        else if (obarr[i]=="Cholesterol"||obarr[i]=="Sodium") {
+                            //obj[obarr[i]]+=" mg."
+                            j++
+                            $('.totalNut').append("<h3>"+obarr[i].replace("_"," ")+": "+obj[obarr[i]]+" mg.</h3><h4>"+Math.round((obj[obarr[i]]/recValues[j-1])*100)+"% DV</h4><br>")
+                        }
+                        else {         
+                            //obj[obarr[i]]+=" g."
+                            j++
+                            //console.log(j+" "+obj[obarr[i]].replace(/[^\d.-]/g,'').slice(0,-1))
+                            $('.totalNut').append("<h3>"+obarr[i].replace("_"," ")+": "+obj[obarr[i]]+" g.</h3><h4>"+Math.round((obj[obarr[i]]/recValues[j-1])*100)+"% DV</h4><br>")
+                        }
+                    
+                    
+                   
+                
+                
+            }
+            $('.inner').css({'height':''})
+        $('.totalNut').prepend("<button type='button' class='closer' onclick='mealclose()' style='float:right;width:24px;height:48px'><span aria-hidden='true' style='font-size:48px;'>&times;</span></button>")  
+        }
+        
+    }
+    function mealclose(){
+        $('.totalNut').remove();
+    }
+    function totalGet(){
+        var j = JSON.stringify(meal)
+        var total = {}
+        var arr=JSON.parse(j).map(function(i){
+            delete i.Brand_name
+            delete i.Food_name
+            delete i.Serving_qty
+            delete i.Serving_unit
+            delete i.Serving_weight_grams
+            delete i.id
+            delete i.haddfood
+            
+            return i
+        })
+        arr.forEach(function(ele){
+            
+            var q= ele.qty
+            delete ele.qty
+            var k = Object.keys(ele)
+            //console.log(k)
+            k.forEach(function(pro){
+                if (!total.hasOwnProperty(pro)){
+                    total[pro]=0;
+                }
+                console.log(ele[pro])
+                
+                total[pro]+=Math.round(ele[pro]*q*10)/10
+                //console.log(pro)
+            })
+        })
+        console.log(total)
+        totalPopulate(total)
+    }
+    function mealRemove(){
+        var k = meal.filter(x => x.Food_name==foodinfo.Food_name)[0]
+        var op = meal.findIndex(i => i.Food_name === foodinfo.Food_name);
+        console.log(k)
+        if (k.qty > 1){
+            meal[op].qty--
+            var l = meal[op].qty+" "+ $('#f'+op)[0].innerHTML.replace(/^[\s\d]+/, '')
+            $('#f'+op).html(l)
+        }
+        else if (k.qty==1){
+            meal.splice(op,1)
+            $("#f"+op).parent().remove()
+            $('.mealR').remove()
+            if (meal.length>0){
+                
+                populate(meal[0])
+            }
+            else {
+                $('.midconf').remove()
+            }
+            
+        }
+    }
+    function mealAdd(){
+        var op = meal.findIndex(i => i.Food_name === foodinfo.Food_name);
+        console.log(op)
+        if ($('#tabt').toArray().length ==0){
+            $('table').append("<th scope='row' id = 'tabt' colspan='5'>MEAL</th>")    
+        }
+        //console.log(meal.filter(x => x.Food_name==foodinfo.Food_name).length ==0)
+        var k = meal.filter(x => x.Food_name==foodinfo.Food_name)
+        if (k.length ==0){
+            console.log('hi')
+            //console.log('hi')
+            //meal.push(foodinfo)
+            
+            $('#f'+(meal.length-1)).attr('colspan','1')
+            $('table').append("<tr><td ><button type='button' class='closer'><span aria-hidden='true'>&times;</span></button><span id ='f"+meal.length+"' class='mealitem'>"+foodinfo.Serving_qty+" " +foodinfo.Food_name+"</span></td></tr>")
+            foodinfo.id=meal.length
+            meal.push(foodinfo)
+            meal[meal.length-1].qty=foodinfo.Serving_qty
+        }
+        else {
+            meal[op].qty++
+            var l = meal[op].qty+" "+ $('#f'+op)[0].innerHTML.replace(/^[\s\d]+/, '')
+            console.log(l)
+            $('#f'+op).html(l)
+            
+        }
+        op = meal.findIndex(i => i.Food_name === foodinfo.Food_name);
+        console.log(op)
+        if (op!=-1){
+          if($('.mealR').toArray().length==0&&meal[op].qty>0){
+                $('.mealabutt').before('<button class="mealR" onclick="mealRemove()">Remove one</button>')
+            }  
+        }
+        if ($('.totalB').toArray().length==0) {
+            $('.topin').after('<div class="midconf"><button class="totalB" onclick="totalGet(meal)">Get nutrition info of whole meal</button></div>')
+        }
+        
+        
+    }
+    $(document).on('click','td>span',function(){
+        var l=$(this).attr('id').substr(1)
+        populate(meal[l])
+    })
+    $(document).on('click','.closer',function(){
+        //console.log($(this).parent())
+        //console.log(meal[$(this).next().attr('id').substr(1)])
+        var ind=$(this).next().attr('id').substr(1)
+        if (foodinfo.Food_name==meal[ind].Food_name&&ind>0){
+            populate(meal[ind-1])
+        }
+        meal.splice(ind,1)
+        
+        $(this).parent().remove()
+        
+        var i = 0;
+        $('.mealitem').toArray().forEach(function(ele){
+            ele.removeAttribute('id');
+            //console.log($(ele))
+            $(ele).attr('id','f'+i)
+            i++
+        })
+        if (meal.length == 0){
+            $('.midconf').remove()
+        }
+        
+        
+        
+    })
+
+    function populate(info){
+        info = JSON.stringify(info)
+        info = JSON.parse(info)
+        delete info.id
+        delete info.qty
+            foodinfo = JSON.parse(JSON.stringify(info))
+        
+            $('.nut>span').remove();
+            $('.nut>hr').remove();
+            $('.nutHead').remove();
+        if (info.hasOwnProperty('haddfood')){
+            var nombre =info["Food_name"]
+        }
+        else {
+            var nombre ='"'+info["Food_name"]+'"'
+        }
+            $('.nut').append("<div class='nutHead'><h2>Nutrition info for "+nombre+"</h2><button class='mealabutt' onclick='mealAdd()'>Add to meal</button></div>")
+            if (meal.filter(x => x.Food_name==foodinfo.Food_name).length>0){
+                $('.mealabutt').before('<button class="mealR" onclick="mealRemove()">Remove one</button>')
+            }
+            //delete info.Food_name;
+            //delete info.Brand_name;
+            //delete info.Serving_qty;
+            //delete info.Serving_unit;
+            //delete info.Serving_weight_grams;
+            var obarr=Object.keys(info);
+            
+            var j = 0;
+            for (var i = 0;i<obarr.length;i++){
+                
+                    info[obarr[i]]=nullZ(info[obarr[i]]).toString();
+                
+                    if (obarr[i]!=="haddfood"&&obarr[i]!=="Serving_qty"&&obarr[i]!=="Food_name"){
+                        
+                        if (obarr[i]=="Calories") {
+                            info[obarr[i]]+=" cal."
+                            $('.nut').append("<span>"+obarr[i].replace("_"," ")+": "+info[obarr[i]]+" </span><span style='float:right'><strong>Recommended Daily Values:</strong></span><hr>")
+                        }
+                        else if (obarr[i]=="Cholesterol"||obarr[i]=="Sodium") {
+                            info[obarr[i]]+=" mg."
+                            j++
+                            $('.nut').append("<span>"+obarr[i].replace("_"," ")+": "+info[obarr[i]]+" </span><span style='float:right'>"+Math.round((info[obarr[i]].replace(/[^\d.-]/g,'').slice(0,-1)/recValues[j-1])*100)+"% DV</span><hr>")
+                        }
+                        else {         
+                            info[obarr[i]]+=" g."
+                            j++
+                            console.log(recValues[j]+"   "+obarr[i])
+                            $('.nut').append("<span>"+obarr[i].replace("_"," ")+": "+info[obarr[i]]+" </span><span style='float:right'>"+Math.round((info[obarr[i]].replace(/[^\d.-]/g,'').slice(0,-1)/recValues[j-1])*100)+"% DV</span><hr>")
+                        }
+                        //console.log(j+"  "+info[obarr[i]].replace(/[^\d.-]/g,'')+"  "+recValues[j])
+                        
+                        
+                        
+                        
+                    }
+                        
+                
+                
+            }  
+    }
+$('#inp').click(function(){
+    if ($('.datGet#inp').toArray().length==1) {
+        var q = $('input').val();
+    }
+	else {
+        var q = $('select').val();
+    }
+    if (!q.replace(/\s/g, '').length) {
+        alert("You haven't set anything to search!")
+    }
+    else {
+        $.get("https://haddonfieldnutrition.com:3002",{'string':q},function(data){
+            console.log(data)
+         if (data.hasOwnProperty('error')){
+            alert('Your request has failed, reason: '+data.reason)
+        }
+        else {
+            populate(data)
+        }
+            go=1
+	}).fail(function(){
+            alert("Server error; Food not retrieved")
+            go=0
+        })
+    }
+})
+</script>
+
+
+</body></html>

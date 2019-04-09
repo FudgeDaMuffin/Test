@@ -1,0 +1,1 @@
+ssh -i C:\Users\julia\Desktop\haddonfield.pem ubuntu@ec2-52-14-137-143.us-east-2.compute.amazonaws.com

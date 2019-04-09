@@ -1,0 +1,315 @@
+tent-Type" content="text/html; charset=UTF-8">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
+    </head>
+    <body>
+        <div class="nav">
+            <ul id="navul" style="list-style-type:none; left: 35%; width:30%;margin-left:auto;margin-right:auto;top:5vh;">
+                <li style="text-align:center;font-size:24px;font-family:Arial">HADDONFIELD PUBLIC SCHOOLS</li>
+                <li style="padding-left:35%"><img id="excellence" src="http://haddonfield.k12.nj.us/images/excellence.png"></li>
+            </ul>
+        </div>  
+        <div class="mid"></div>
+        <div class="e">
+            <div class="bottom-row">
+                <div id="side"></div>
+                <div id="ee">
+                    <div class="inner">
+                        <div class="topin">
+                            <div class="topinleft"> 
+                                    <input type="text" placeholder="Insert food name here"><button id="datGet" style="margin-left:1em">Get Data</button>
+                            </div>
+                            <div class="topinright">
+                                <table>
+                                
+                            </table>
+                            </div>
+                        </div>
+                        <div class="nut">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div id="side"></div>
+            </div>
+        </div>
+    
+    <style>
+        .topinleft {
+            width:50%;
+            position:relative;
+        }
+        .topinright {
+            width:50%;
+            position:relative;
+        }
+        .topin {
+            display:flex;
+        }
+        .nutHead {
+            height:4em;
+            position:relative;
+        }
+        .nutHead > button {
+            
+            display:inline-block;
+            height:40%;
+            bottom:30%;
+            right:0px;
+            position:absolute;
+            height:2em;
+        }
+        .nutHead > h2 {
+            width:30vw;
+            display:inline-block;
+            height:4em;
+        }
+        span {
+            font-size:24px;
+            font-family:sans-serif;
+        }
+        button{
+            height:2.5em;
+            padding:.1rem .25rem .1rem .25rem;
+            border-radius:5px;
+            border: 1px solid grey;
+            cursor:pointer;
+            font-family:arial;
+            background-color:#CCCCCC
+        }
+        button:hover {
+            background-color:#B2B2B2;
+        }
+        .inner {
+            background-color:#FFD1D1;
+            border-radius:5px;
+            height: 90vh;
+            padding:2.5vh 5vw 2.5vh 5vw;
+            margin:2.5vh 1vw 2.5vh 1vw;
+            box-shadow: .25rem .25rem #A53A3A;
+            /*display:flex;*/
+        }
+        .e {
+            background-color:#555555
+        }
+        .mid {
+            background: rgb(85,85,85);
+            background: linear-gradient(0deg, rgba(85,85,85,1) 0%, rgba(136,136,136,1) 50%);
+        }
+        input {
+            height:2.5em;
+            padding:.1rem .25rem .1rem .25rem;
+            border-radius:2.5px;
+            border:0;
+            margin-bottom:5vh;
+        }
+        #navul >li{
+            padding-top:.25vw;
+        }
+        .nav > h1 {     
+            position:absolute;
+            width:10%;
+            height:5vh; 
+        }
+        #excellence {  
+            position:absolute;
+            width:10% 
+        }
+        html {
+            width:100%;
+        }
+        #ee {
+            width:80vw;
+            border-radius:1rem;
+            background-color:#BF4242;
+            /*display:flex;*/
+            height:100vh;
+            
+        }
+        #side{
+            width:10vw;
+            height:100vh
+        }
+        .bottom-row >div{
+            height:80vh;
+        }
+        .bottom-row{
+            width:100%;
+            flex-direction:row;
+            display:inline-flex;
+        }
+        .mid {
+            height:15vh;
+            width:100%;
+        }
+        body {
+            margin:0;
+            width:100%;
+        }
+        .nav{
+            display:flex;
+            flex-direction:column;
+            width:100%;
+            background-color:#A51010;
+            height:10vh;
+            box-shadow:20px;
+        }
+        hr {
+             border: 0;
+            height: 1px;
+            background: #333;
+        
+        }
+        h2{
+            font-family:sans-serif;
+        }
+        td {
+            cursor:pointer;
+            text-align:right;
+            height:2em;
+        }
+        .topinright > * {
+            float:right;
+            right:0px;
+        }
+        table {
+            position:relative;
+        }
+        #tabt {
+            text-align:right;
+            width:100%;
+            flex:1;
+            border-bottom: 1px solid black;
+        }
+        .closer {
+            border:0;
+            background:none;
+            padding:0;
+            margin:0;
+            color:lightgrey;
+            height:1.5em;
+        }
+        .closer:hover {
+            background:none;
+            color: black;
+        }
+        .mealitem {
+            font-size:14px;
+        }
+    </style>
+<script>
+    function nullZ (inp){
+        if (inp == null){
+            return 0
+        }
+        else {
+            return inp
+        }
+    }
+    var foodinfo;
+    var meal=[];
+    function mealAdd(){
+        if ($('#tabt').toArray().length ==0){
+            $('table').append("<th scope='row' id = 'tabt' colspan='5'>MEAL</th>")    
+        }
+        //console.log(meal.filter(x => x.Food_name==foodinfo.Food_name).length ==0)
+        var k = meal.filter(x => x.Food_name==foodinfo.Food_name)
+        if (k.length ==0){
+            console.log('hi')
+            //console.log('hi')
+            //meal.push(foodinfo)
+            
+            $('#f'+(meal.length-1)).attr('colspan','1')
+            $('table').append("<tr><td ><button type='button' class='closer'><span aria-hidden='true'>&times;</span></button><span id ='f"+meal.length+"' class='mealitem'>"+foodinfo.Serving_qty+" " +foodinfo.Food_name+"</span></td></tr>")
+            foodinfo.id=meal.length
+            meal.push(foodinfo)
+            meal[meal.length-1].qty=foodinfo.Serving_qty
+        }
+        else {
+            var op = meal.findIndex(i => i.Food_name === foodinfo.Food_name);
+            //console.log(op)
+            //var statq =foodinfo.Serving_qty*1
+            meal[op].qty += 1
+            //console.log($('#f'+op))
+            var l = meal[op].qty+" "+ $('#f'+op)[0].innerHTML.replace(/^[\s\d]+/, '')
+            $('#f'+op).html(l)
+            
+        }
+        var total 
+    }
+    $(document).on('click','td>span',function(){
+        var l=$(this).attr('id').substr(1)
+        populate(meal[l])
+    })
+    $(document).on('click','.closer',function(){
+        //console.log($(this).parent())
+        console.log(meal[$(this).next().attr('id').substr(1)])
+        meal.splice($(this).next().attr('id').substr(1),1)
+        
+        $(this).parent().remove()
+        
+        var i = 0;
+        $('.mealitem').toArray().forEach(function(ele){
+            ele.removeAttribute('id');
+            //console.log($(ele))
+            $(ele).attr('id','f'+i)
+            i++
+        })
+        
+    })
+
+    function populate(info){
+            foodinfo = info
+            $('.nut>span').remove();
+            $('.nut>hr').remove();
+            $('.nutHead').remove();
+            $('.nut').append("<div class='nutHead'><h2>Nutrition info for \""+info["Food_name"]+"\"</h2><button onclick='mealAdd()'>Add to meal</button></div>")
+            //delete info.Food_name;
+            //delete info.Brand_name;
+            //delete info.Serving_qty;
+            //delete info.Serving_unit;
+            //delete info.Serving_weight_grams;
+            var obarr=Object.keys(info);
+            
+            for (var i = 0;i<obarr.length;i++){
+                if (!(i < 5)) {
+                    info[obarr[i]]=nullZ(info[obarr[i]]).toString();
+                    //this if checks if the object is already in meals
+                    if (meal.filter(x => x.Food_name==foodinfo.Food_name).length ==0) {
+                        if (obarr[i]=="Calories") {
+                            info[obarr[i]]+=" cal."
+                        }
+                        else if (obarr[i]=="Cholesterol"||obarr[i]=="Sodium") {
+                            info[obarr[i]]+=" mg."
+                        }
+                        else {         
+                            info[obarr[i]]+=" g."
+                        }
+                    }
+                    
+                    $('.nut').append("<span>"+obarr[i].replace("_"," ")+": "+info[obarr[i]]+" </span><hr>")
+                }
+                
+            }  
+    }
+$('#datGet').click(function(){
+	var q = $('input').val();
+    if (!q.replace(/\s/g, '').length) {
+        alert("You haven't set anything to search!")
+    }
+    else {
+        $.get("http://52.14.137.143:3001",{'string':q},function(data){
+        if (data.hasOwnProperty('error')){
+            alert('Your request has failed, reason: '+data.reason)
+        }
+        else {
+            populate(data)
+        }
+	})
+    }
+})
+</script>
+
+
+</body></html>
